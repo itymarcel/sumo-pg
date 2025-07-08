@@ -37,14 +37,14 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
     console.log('should: ', shouldLoadVideo)
   }, [distance])
 
-  const handleVideoLoad = useCallback(() => {
-    console.log(`Video loaded: ${project.title} (slide ${slideIndex})`);
+  const handleVideoLoad = useCallback((eventType: string) => {
+    console.log(`Video ${eventType}: ${project.title} (slide ${slideIndex})`);
     setIsLoading(false);
     setIsVideoLoaded(true);
   }, [project.title, slideIndex]);
 
-  const handleVideoError = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
-    console.warn(`Video load error for ${project.title}:`, e);
+  const handleVideoError = useCallback((e: React.SyntheticEvent<HTMLVideoElement>, eventType: string) => {
+    console.warn(`Video ${eventType} for ${project.title}:`, e);
     setIsLoading(false);
     setHasError(true);
     
@@ -58,6 +58,11 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       }
     }, 3000);
   }, [project.title, shouldLoadVideo, hasError]);
+
+  const handleVideoSuspend = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
+    console.log(`Video suspend for ${project.title} (normal behavior):`, e);
+    // Don't treat suspend as an error - it's normal when loading is paused
+  }, [project.title]);
 
   const playVideo = useCallback(async () => {
     if (!videoRef.current || !userHasInteracted || !isVideoLoaded) return;
@@ -142,9 +147,16 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
           className="absolute inset-0 w-full h-full object-cover"
           loop
           playsInline
+          webkit-playsinline="true"
+          muted
           preload={distance === 0 ? "auto" : "metadata"}
-          onLoadedData={handleVideoLoad}
-          onError={handleVideoError}
+          onLoadedMetadata={() => handleVideoLoad('loadedmetadata')}
+          onCanPlay={() => handleVideoLoad('canplay')}
+          onLoadedData={() => handleVideoLoad('loadeddata')}
+          onError={(e) => handleVideoError(e, 'error')}
+          onStalled={(e) => handleVideoError(e, 'stalled')}
+          onSuspend={handleVideoSuspend}
+          onAbort={(e) => handleVideoError(e, 'abort')}
           onClick={handleVideoClick}
         >
           <source src={project.videoUrl} type="video/mp4" />
