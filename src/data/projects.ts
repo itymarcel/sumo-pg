@@ -2,6 +2,17 @@ import { Project } from '../types/Project';
 
 export const projects: Project[] = [
   {
+    id: 'bread-and-butter',
+    videoUrl: 'videos/breadandbutter_master.mp4',
+    title: 'BREAD AND BUTTER',
+    subtitle: '',
+    services: [
+      'Composition',
+      'Sound Design'
+    ],
+    client: '0711 Livecom GmbH'
+  },
+  {
     id: 'beyerdynamic-launch',
     videoUrl: 'videos/beyerdynamic_master.mp4',
     title: 'beyerdynamic Launch Campaign',
@@ -35,17 +46,6 @@ export const projects: Project[] = [
       'Sound Design'
     ],
     client: 'Awesome Pixels / Klangerfinder'
-  },
-  {
-    id: 'bread-and-butter',
-    videoUrl: 'videos/breadandbutter_master.mp4',
-    title: 'BREAD AND BUTTER',
-    subtitle: '',
-    services: [
-      'Composition',
-      'Sound Design'
-    ],
-    client: '0711 Livecom GmbH'
   },
   {
     id: 'db-ise-25',

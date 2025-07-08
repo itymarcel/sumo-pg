@@ -1,36 +1,73 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Volume2, VolumeX, Info } from 'lucide-react';
 import { projects } from '../data/projects';
 import VideoSlide from './VideoSlide';
-import IntroSlide from './IntroSlide';
 import AudioEnableOverlay from './AudioEnableOverlay';
 
 const VideoSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
+  const [isGlobalMuted, setIsGlobalMuted] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const slides = [
-    { type: 'intro' as const },
-    ...projects.map(project => ({ type: 'video' as const, project }))
-  ];
+  const slides = projects.map(project => ({ type: 'video' as const, project }));
 
   const handleUserInteraction = useCallback(() => {
     if (!userHasInteracted) {
       setUserHasInteracted(true);
     }
-  }, [userHasInteracted]);
+    setShowOverlay(false);
+    
+    // Resume the currently active video after closing overlay
+    setTimeout(() => {
+      const allVideos = document.querySelectorAll('video');
+      allVideos.forEach((video, index) => {
+        if (index === currentIndex && video.paused) {
+          try {
+            video.muted = isGlobalMuted;
+            video.volume = isGlobalMuted ? 0 : 1;
+            video.play();
+            console.log('Resumed active video:', video.currentSrc);
+          } catch (error) {
+            console.warn('Failed to resume video:', error);
+          }
+        }
+      });
+    }, 100);
+  }, [userHasInteracted, currentIndex, isGlobalMuted]);
+
+  const toggleGlobalMute = useCallback(() => {
+    const newMutedState = !isGlobalMuted;
+    setIsGlobalMuted(newMutedState);
+    
+    // Mute/unmute all video elements
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach((video) => {
+      video.muted = newMutedState;
+    });
+  }, [isGlobalMuted]);
+
+  const showInfoOverlay = useCallback(() => {
+    console.log('showInfoOverlay clicked, current showOverlay:', showOverlay);
+    setShowOverlay(true);
+    console.log('setShowOverlay(true) called');
+    
+    // Pause all videos
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach((video) => {
+      video.pause();
+    });
+  }, [showOverlay]);
 
   useEffect(() => {
     const handleClick = () => handleUserInteraction();
-    const handleKeyDown = () => handleUserInteraction();
     
     document.addEventListener('click', handleClick);
-    document.addEventListener('keydown', handleKeyDown);
     
     return () => {
       document.removeEventListener('click', handleClick);
-      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleUserInteraction]);
 
@@ -92,32 +129,53 @@ const VideoSlider: React.FC = () => {
       >
         {slides.map((slide, index) => (
           <div
-            key={slide.type === 'intro' ? 'intro' : slide.project.id}
+            key={slide.project.id}
             data-slide-index={index}
             className="h-screen w-full snap-start"
           >
-            {slide.type === 'intro' ? (
-              <IntroSlide 
-                isActive={index === currentIndex}
-                userHasInteracted={userHasInteracted}
-              />
-            ) : (
-              <VideoSlide
-                project={slide.project}
-                isActive={index === currentIndex}
-                userHasInteracted={userHasInteracted}
-                slideIndex={index}
-                currentIndex={currentIndex}
-              />
-            )}
+            <VideoSlide
+              project={slide.project}
+              isActive={index === currentIndex}
+              userHasInteracted={userHasInteracted}
+              slideIndex={index}
+              currentIndex={currentIndex}
+              isGlobalMuted={isGlobalMuted}
+            />
           </div>
         ))}
       </div>
       
+      {/* Control Buttons */}
+      {userHasInteracted && (
+        <div className="fixed top-4 right-4 z-30 flex gap-2">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              showInfoOverlay();
+            }}
+            className="p-1 text-white transition-colors"
+          >
+            <Info size={24} />
+          </button>
+          <button
+            onClick={toggleGlobalMute}
+            className="p-1 text-white transition-colors"
+          >
+            {isGlobalMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+          </button>
+        </div>
+      )}
+      
       <AudioEnableOverlay 
-        show={!userHasInteracted}
+        show={showOverlay}
         onEnable={handleUserInteraction}
       />
+      {/* Debug info */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="fixed bottom-4 left-4 text-white text-xs bg-black/50 p-2 rounded">
+          userHasInteracted: {userHasInteracted.toString()}, showOverlay: {showOverlay.toString()}
+        </div>
+      )}
     </>
   );
 };
