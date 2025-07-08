@@ -68,6 +68,29 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
     // Don't treat suspend as an error - it's normal when loading is paused
   }, [project.title]);
 
+  const handleVideoStalled = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
+    console.log(`Video stalled for ${project.title} (network slow, waiting...)`);
+    // Don't immediately treat stalled as an error - it's normal on slow networks
+    // Only set error after a longer timeout to give slow networks time
+    setTimeout(() => {
+      if (videoRef.current && videoRef.current.readyState < 3 && shouldLoadVideo) {
+        console.warn(`Video still stalled after timeout for ${project.title}`);
+        setHasError(true);
+        setIsLoading(false);
+      }
+    }, 15000); // Wait 15 seconds for slow networks
+  }, [project.title, shouldLoadVideo]);
+
+  const handleVideoAbort = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
+    console.log(`Video abort for ${project.title} (likely user navigation)`);
+    // Don't treat abort as an error - it's normal during navigation
+    // Only reset loading state if we should still be loading
+    if (shouldLoadVideo) {
+      setIsLoading(true);
+      setIsVideoLoaded(false);
+    }
+  }, [project.title, shouldLoadVideo]);
+
   const playVideo = useCallback(async () => {
     if (!videoRef.current || !userHasInteracted || !isVideoLoaded) return;
 
@@ -172,9 +195,9 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
           onCanPlay={() => handleVideoLoad('canplay')}
           onLoadedData={() => handleVideoLoad('loadeddata')}
           onError={(e) => handleVideoError(e, 'error')}
-          onStalled={(e) => handleVideoError(e, 'stalled')}
+          onStalled={handleVideoStalled}
           onSuspend={handleVideoSuspend}
-          onAbort={(e) => handleVideoError(e, 'abort')}
+          onAbort={handleVideoAbort}
           onClick={handleVideoClick}
         >
           <source src={project.videoUrl} type="video/mp4" />
