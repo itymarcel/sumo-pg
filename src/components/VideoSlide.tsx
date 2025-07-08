@@ -23,6 +23,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
   const [hasError, setHasError] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [progress, setProgress] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasTriedToPlay = useRef(false);
 
@@ -39,6 +40,16 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
     setIsLoading(false);
     setIsVideoLoaded(true);
   }, [project.title, slideIndex]);
+
+  const handleTimeUpdate = useCallback(() => {
+    if (videoRef.current) {
+      const currentTime = videoRef.current.currentTime;
+      const duration = videoRef.current.duration;
+      if (duration > 0) {
+        setProgress((currentTime / duration) * 100);
+      }
+    }
+  }, []);
 
   const handleVideoError = useCallback((e: React.SyntheticEvent<HTMLVideoElement>, eventType: string) => {
     const target = e.target as HTMLElement;
@@ -141,6 +152,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       setIsLoading(true);
       setIsVideoLoaded(false);
       setHasError(false);
+      setProgress(0);
       hasTriedToPlay.current = false;
     } else if (shouldLoadVideo && !isVideoLoaded && !hasError) {
       // console.log(`Should load video: ${project.title} (slide ${slideIndex}, distance: ${distance})`);
@@ -153,6 +165,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
     
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
+      setProgress(0);
       playVideo();
     }
   }, [userHasInteracted, playVideo]);
@@ -200,6 +213,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
           onStalled={handleVideoStalled}
           onSuspend={handleVideoSuspend}
           onAbort={handleVideoAbort}
+          onTimeUpdate={handleTimeUpdate}
           onClick={handleVideoClick}
         >
           <source src={project.videoUrl} type="video/mp4" />
@@ -222,8 +236,22 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
         </div>
       )}
 
+      {/* Video Progress Overlay */}
+      {isVideoLoaded && (
+        <div className="absolute p-4 pt-2 z-0 pointer-events-none w-screen">
+          <div 
+            className="relative inset-0 bg-white rounded-full bg-opacity-100 transition-all ease-out duration-100"
+            style={{ 
+              width: `4px`,
+              height: '4px',
+              left: `${progress}%`,
+            }}
+          />
+        </div>
+      )}
+
       {/* Overlay Content */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute z-10 inset-0 pointer-events-none">
         {/* Title and Subtitle - Always Visible */}
         <div className='absolute top-4 left-4 right-4 text-white flex flex-col gap-2 md:gap-4'>
           <div className="relative ">
@@ -251,38 +279,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
             </div>
           </div>
         </div>
-
-        {/* Services and Client Info - Toggleable */}
-        <div 
-          className={`absolute flex items-center justify-center left-0 bottom-0 w-full h-full text-white ${
-            showDetails ? 'opacity-100 transform' : 'opacity-0 transform'
-          }`}
-        >
-          <div className="bg-white rounded-lg p-4 max-w-md text-black">
-            <div className="flex flex-col gap-2 mb-4">
-              <div className="font-bold relative leading-none">Services</div>
-              <div className="text-sm relative -left-1 flex gap-1 items-center flex-wrap">
-                {project.services.map((service, index) => (
-                  <div key={index} className="opacity-90 text-white font-medium list-none rounded-md bg-black py-2 px-3 w-min text-nowrap">
-                    {service}
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className=''>
-              for <span className="font-medium">{project.client}</span>
-            </div>
-          </div>
-        </div>
-
       </div>
-
-      {/* Invisible Click Handler for Toggle */}
-      {/* <div 
-        className="absolute inset-0 cursor-default"
-        onClick={handleOverlayClick}
-      /> */}
     </div>
   );
 };
