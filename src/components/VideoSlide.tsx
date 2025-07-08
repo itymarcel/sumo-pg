@@ -201,7 +201,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       <div className="absolute inset-0 pointer-events-none">
         {/* Title and Subtitle - Always Visible */}
         <div className="absolute top-4 left-4 right-4 text-white">
-          <h2 className="text-2xl md:text-4xl font-bold mb-1 leading-tight">
+          <h2 className="text-2xl md:text-4xl font-bold mb-1 leading-[1]">
             {project.title}
           </h2>
           {project.subtitle && (
