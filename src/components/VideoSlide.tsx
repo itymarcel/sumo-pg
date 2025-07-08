@@ -216,9 +216,8 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       {/* Error State */}
       {hasError && (
         <div className="absolute inset-0 flex items-center justify-center bg-black text-white">
-          <div className="text-center">
-            <p className="text-lg mb-2">Failed to load video</p>
-            <p className="text-sm opacity-70">{project.title}</p>
+          <div className="text-center font-bold text-2xl rotate-90">
+            {':('}
           </div>
         </div>
       )}
@@ -228,7 +227,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
         {/* Title and Subtitle - Always Visible */}
         <div className='absolute top-4 left-4 right-4 text-white flex flex-col gap-2 md:gap-4'>
           <div className="relative ">
-            <h2 className="relative text-2xl uppercase md:text-5xl md:-left-0.5 font-bold leading-[1] md:max-w-[90vw]">
+            <h2 className="relative text-2xl uppercase md:text-5xl md:-left-0.5 font-extrabold leading-[1] md:max-w-[90vw]">
               {project.title}
             </h2>
             {project.subtitle && (
@@ -244,7 +243,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
             <div className="flex flex-col gap-2">
               <div className="text-sm relative -left-0.5 md:left-auto flex gap-1 items-center flex-wrap max-w-2xl">
                 {project.services.map((service, index) => (
-                  <div key={index} className="text-black uppercase text-xs font-bold list-none rounded-xl bg-white py-2 px-3 md:py-3 md:px-4 w-min text-nowrap">
+                  <div key={index} className="text-black uppercase text-xs font-extrabold list-none rounded-xl bg-white py-2 px-3 md:py-3 md:px-4 w-min text-nowrap">
                     {service}
                   </div>
                 ))}

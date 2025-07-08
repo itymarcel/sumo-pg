@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Volume2, VolumeX, Info } from 'lucide-react';
+import { Volume2, VolumeX, Info, ArrowUp } from 'lucide-react';
 import { projects } from '../data/projects';
 import VideoSlide from './VideoSlide';
 import AudioEnableOverlay from './AudioEnableOverlay';
@@ -197,17 +197,26 @@ const VideoSlider: React.FC = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              scrollToSlide(0)
+            }}
+            className={`p-1 text-white transition-colors ${currentIndex === 0 && 'hidden'}`}
+          >
+            <ArrowUp size={24} />
+          </button>
+          <button
+            onClick={toggleGlobalMute}
+            className={`p-1 text-white transition-colors`}
+          >
+            {isGlobalMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
               showInfoOverlay();
             }}
             className="p-1 text-white transition-colors"
           >
             <Info size={24} />
-          </button>
-          <button
-            onClick={toggleGlobalMute}
-            className="p-1 text-white transition-colors"
-          >
-            {isGlobalMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
           </button>
         </div>
       )}

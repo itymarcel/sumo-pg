@@ -25,31 +25,6 @@ export const projects: Project[] = [
     client: 'Partners: Max Celar · Marcel Müller'
   },
   {
-    id: 'beyerdynamic-launch',
-    videoUrl: 'videos/beyerdynamic_master.mp4',
-    title: 'beyerdynamic Launch Campaign',
-    subtitle: 'DT 770 PRO X & DT 990 PRO X',
-    services: [
-      'Music Composition',
-      'Sound Design',
-      'Casting & Voice Recording'
-    ],
-    client: 'beyerdynamic · 0711 Livecom GmbH'
-  },
-  {
-    id: 'blind-date-stuttgart',
-    videoUrl: 'videos/blinddatemitstuttgart_master.mp4',
-    title: 'Blind Date mit Stuttgart',
-    subtitle: 'Sound Installations for an Inclusive Urban Experience',
-    services: [
-      'Technical Concept',
-      'Installation & System Integration',
-      'Interactive Sound Scenes via IR Sensor',
-      'Sound Design'
-    ],
-    client: 'StadtPalais – Museum für Stuttgart'
-  },
-  {
     id: 'bmw-vision-shanghai',
     videoUrl: 'videos/bmw_shanghai_master.mp4',
     title: 'BMW Vision Driving Experience – Auto Show Shanghai',
@@ -93,6 +68,31 @@ export const projects: Project[] = [
       'Sound Design',
       'Composition',
       'Mixing for usomo (binaural audio system)'
+    ],
+    client: 'StadtPalais – Museum für Stuttgart'
+  },
+  {
+    id: 'beyerdynamic-launch',
+    videoUrl: 'videos/beyerdynamic_master.mp4',
+    title: 'beyerdynamic Launch Campaign',
+    subtitle: 'DT 770 PRO X & DT 990 PRO X',
+    services: [
+      'Music Composition',
+      'Sound Design',
+      'Casting & Voice Recording'
+    ],
+    client: 'beyerdynamic · 0711 Livecom GmbH'
+  },
+  {
+    id: 'blind-date-stuttgart',
+    videoUrl: 'videos/blinddatemitstuttgart_master.mp4',
+    title: 'Blind Date mit Stuttgart',
+    subtitle: 'Sound Installations for an Inclusive Urban Experience',
+    services: [
+      'Technical Concept',
+      'Installation & System Integration',
+      'Interactive Sound Scenes via IR Sensor',
+      'Sound Design'
     ],
     client: 'StadtPalais – Museum für Stuttgart'
   },
