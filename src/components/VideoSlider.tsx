@@ -147,7 +147,7 @@ const VideoSlider: React.FC = () => {
       
       {/* Control Buttons */}
       {userHasInteracted && (
-        <div className="fixed top-4 right-4 md:top-6 md:right-6 z-30 flex gap-2">
+        <div className="fixed bottom-4 top-auto right-4 md:bottom-auto md:top-6 md:right-6 z-30 flex gap-2">
           <button
             onClick={(e) => {
               e.stopPropagation();
