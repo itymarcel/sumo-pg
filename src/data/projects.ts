@@ -13,6 +13,18 @@ export const projects: Project[] = [
     client: '0711 Livecom GmbH'
   },
   {
+    id: 'reach-vr-ar',
+    videoUrl: 'videos/reach_master.mp4',
+    title: 'REACH (VR / AR)',
+    subtitle: '',
+    services: [
+      'Sound Design',
+      'Composition',
+      'Mixing'
+    ],
+    client: 'Partners: Max Celar · Marcel Müller'
+  },
+  {
     id: 'beyerdynamic-launch',
     videoUrl: 'videos/beyerdynamic_master.mp4',
     title: 'beyerdynamic Launch Campaign',
@@ -26,7 +38,7 @@ export const projects: Project[] = [
   },
   {
     id: 'blind-date-stuttgart',
-    videoUrl: 'videos/blind-date-stuttgart.mp4',
+    videoUrl: 'videos/blinddatemitstuttgart_master.mp4',
     title: 'Blind Date mit Stuttgart',
     subtitle: 'Sound Installations for an Inclusive Urban Experience',
     services: [
@@ -61,7 +73,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dmg-mori-emo',
-    videoUrl: 'videos/dmg-mori-emo.mp4',
+    videoUrl: 'videos/dmgmori_master.mp4',
     title: 'DMG MORI – EMO 2024 Hannover',
     subtitle: '',
     services: [
@@ -73,7 +85,7 @@ export const projects: Project[] = [
   },
   {
     id: 'freundeskreis-tracks',
-    videoUrl: 'videos/freundeskreis-tracks.mp4',
+    videoUrl: 'videos/freundeskreis_master.mp4',
     title: 'Freundeskreis – Put Your Ear on the Tracks of History',
     subtitle: '',
     services: [
@@ -141,18 +153,6 @@ export const projects: Project[] = [
     client: 'Partners: Finji · Ondo · Thunderpad'
   },
   {
-    id: 'reach-vr-ar',
-    videoUrl: 'videos/reach_master.mp4',
-    title: 'REACH (VR / AR)',
-    subtitle: '',
-    services: [
-      'Sound Design',
-      'Composition',
-      'Mixing'
-    ],
-    client: 'Partners: Max Celar · Marcel Müller'
-  },
-  {
     id: 'roomservice-telephone',
     videoUrl: 'videos/roomservice_master.mp4',
     title: 'Roomservice Telephone Announcement',
@@ -177,7 +177,7 @@ export const projects: Project[] = [
   },
   {
     id: 'sumo-be-my-guest',
-    videoUrl: 'videos/sumo-be-my-guest.mp4',
+    videoUrl: 'videos/bemyguest_master.mp4',
     title: 'sumo – Be My Guest Mix',
     subtitle: '',
     services: [
@@ -200,7 +200,7 @@ export const projects: Project[] = [
   },
   {
     id: 'sumo-trakul-ep',
-    videoUrl: 'videos/sumo-trakul-ep.mp4',
+    videoUrl: 'videos/trakul_master.mp4',
     title: 'sumo – Trakul EP',
     subtitle: '',
     services: [

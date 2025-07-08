@@ -122,14 +122,15 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
     }
   }, [shouldLoadVideo, project.title, slideIndex, distance, isVideoLoaded, hasError]);
 
-  // const handleVideoClick = useCallback((e: React.MouseEvent) => {
-  //   e.stopPropagation();
-  //   if (!userHasInteracted) return;
+  const handleVideoClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!userHasInteracted) return;
     
-  //   if (videoRef.current) {
-  //     playVideo();
-  //   }
-  // }, [userHasInteracted, playVideo, pauseVideo]);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      playVideo();
+    }
+  }, [userHasInteracted, playVideo]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     // Try to play all video elements in the DOM
@@ -174,7 +175,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
           onStalled={(e) => handleVideoError(e, 'stalled')}
           onSuspend={handleVideoSuspend}
           onAbort={(e) => handleVideoError(e, 'abort')}
-          // onClick={handleVideoClick}
+          onClick={handleVideoClick}
         >
           <source src={project.videoUrl} type="video/mp4" />
         </video>
@@ -200,15 +201,31 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       {/* Overlay Content */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Title and Subtitle - Always Visible */}
-        <div className="absolute top-4 left-4 right-4 text-white">
-          <h2 className="text-2xl md:text-4xl font-bold mb-1 leading-[1]">
-            {project.title}
-          </h2>
-          {project.subtitle && (
-            <p className="text-lg font-medium md:text-xl leading-tight">
-              {project.subtitle}
-            </p>
-          )}
+        <div className='absolute top-4 left-4 right-4 text-white flex flex-col gap-2 md:gap-4'>
+          <div className="relative ">
+            <h2 className="relative text-2xl uppercase md:text-5xl md:-left-0.5 font-bold leading-[1] md:max-w-[90vw]">
+              {project.title}
+            </h2>
+            {project.subtitle && (
+              <div className="text-lg font-medium md:text-xl mt-1 leading-[1]">
+                {project.subtitle}
+              </div>
+            )}
+            <div className='text-lg font-medium md:text-xl leading-[1]'>
+                {project.client}
+            </div>
+          </div>
+          <div className="relative">
+            <div className="flex flex-col gap-2">
+              <div className="text-sm relative -left-0.5 md:left-auto flex gap-1 items-center flex-wrap max-w-2xl">
+                {project.services.map((service, index) => (
+                  <div key={index} className="text-black uppercase text-xs font-bold list-none rounded-xl bg-white py-2 px-3 md:py-3 md:px-4 w-min text-nowrap">
+                    {service}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Services and Client Info - Toggleable */}
@@ -238,10 +255,10 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       </div>
 
       {/* Invisible Click Handler for Toggle */}
-      <div 
+      {/* <div 
         className="absolute inset-0 cursor-default"
         onClick={handleOverlayClick}
-      />
+      /> */}
     </div>
   );
 };

@@ -37,7 +37,7 @@ const AudioEnableOverlay: React.FC<AudioEnableOverlayProps> = ({ show, onEnable 
         </h2>
       </div>
       <div 
-        className="fixed z-0 text-center w-full bottom-12 md:bottom-auto md:h-full text-white flex md:flex-col items-center justify-center text-sm font-bold mt-4"
+        className="fixed z-0 text-center w-full bottom-12 md:bottom-auto md:h-full text-white flex flex-col gap-2 items-center justify-center text-sm font-bold mt-4"
         onClick={handleOverlayClick}>
         <div className='flex items-center gap-1 animate-pulse'>
           <AudioLines className='size-4'/> Tap anywhere to enable audio

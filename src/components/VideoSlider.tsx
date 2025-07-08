@@ -3,12 +3,15 @@ import { Volume2, VolumeX, Info } from 'lucide-react';
 import { projects } from '../data/projects';
 import VideoSlide from './VideoSlide';
 import AudioEnableOverlay from './AudioEnableOverlay';
+import InstructionsOverlay from './InstructionsOverlay';
 
 const VideoSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
   const [isGlobalMuted, setIsGlobalMuted] = useState(false);
   const [showOverlay, setShowOverlay] = useState(true);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [hasShownInstructions, setHasShownInstructions] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -19,6 +22,12 @@ const VideoSlider: React.FC = () => {
       setUserHasInteracted(true);
     }
     setShowOverlay(false);
+    
+    // Show instructions overlay only once after AudioEnableOverlay is dismissed
+    if (!hasShownInstructions) {
+      setShowInstructions(true);
+      setHasShownInstructions(true);
+    }
     
     // Resume the currently active video after closing overlay
     setTimeout(() => {
@@ -36,7 +45,7 @@ const VideoSlider: React.FC = () => {
         }
       });
     }, 100);
-  }, [userHasInteracted, currentIndex, isGlobalMuted]);
+  }, [userHasInteracted, currentIndex, isGlobalMuted, hasShownInstructions]);
 
   const toggleGlobalMute = useCallback(() => {
     const newMutedState = !isGlobalMuted;
@@ -61,15 +70,52 @@ const VideoSlider: React.FC = () => {
     });
   }, [showOverlay]);
 
+  const scrollToSlide = useCallback((index: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const slideElement = container.querySelector(`[data-slide-index="${index}"]`);
+    if (slideElement) {
+      slideElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
+  }, []);
+
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      const nextIndex = Math.min(currentIndex + 1, slides.length - 1);
+      if (nextIndex !== currentIndex) {
+        scrollToSlide(nextIndex);
+      }
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      const prevIndex = Math.max(currentIndex - 1, 0);
+      if (prevIndex !== currentIndex) {
+        scrollToSlide(prevIndex);
+      }
+    } else if (event.key === 'm' || event.key === 'M') {
+      event.preventDefault();
+      toggleGlobalMute();
+    } else if (event.key === ' ') {
+      event.preventDefault();
+      showInfoOverlay();
+    }
+  }, [currentIndex, slides.length, scrollToSlide, toggleGlobalMute, showInfoOverlay]);
+
   useEffect(() => {
     const handleClick = () => handleUserInteraction();
     
     document.addEventListener('click', handleClick);
+    document.addEventListener('keydown', handleKeyDown);
     
     return () => {
       document.removeEventListener('click', handleClick);
+      document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleUserInteraction]);
+  }, [handleUserInteraction, handleKeyDown]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -169,6 +215,10 @@ const VideoSlider: React.FC = () => {
       <AudioEnableOverlay 
         show={showOverlay}
         onEnable={handleUserInteraction}
+      />
+      
+      <InstructionsOverlay 
+        show={showInstructions}
       />
     </>
   );
