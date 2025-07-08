@@ -27,12 +27,12 @@ const AudioEnableOverlay: React.FC<AudioEnableOverlayProps> = ({ show, onEnable 
     >
       <div className="relative z-10 text-left text-white p-4 flex flex-col gap-1">
         <div className='relative text-[30vw] leading-[80%] align-text-top p-0 m-0 md:text-[15vw] font-bold'>SUMO</div>
-        <h2 className='relative mt-2 md:mt-4 text-2xl leading-[85%] md:leading-[75%] p-0 m-0 md:text-5xl md:left-3 font-bold'>Paul Goeritz</h2>
-        <h2 className='relative text-2xl leading-[85%] md:leading-[75%] p-0 m-0 md:text-5xl md:left-3 font-bold'>Sound Designer</h2>
-        <h2 className='relative text-2xl leading-[85%] md:leading-[75%] p-0 m-0 md:text-5xl md:left-3 font-bold'>
-          <a onClick={e => openLink(e, 'mailto:sumo@sumolicious.com')} className='underline hover:text-black' >sumo@sumolicious.com</a>
+        <h2 className='relative mt-2 md:mt-4 text-2xl leading-[85%] md:leading-[75%] p-0 m-0 md:text-5xl left-1 md:left-3 font-bold'>Paul Goeritz</h2>
+        <h2 className='relative text-2xl leading-[85%] md:leading-[75%] p-0 m-0 md:text-5xl left-1 md:left-3 font-bold'>Sound Designer</h2>
+        <h2 className='relative text-2xl leading-[85%] md:leading-[75%] p-0 m-0 md:text-5xl left-1 md:left-3 font-bold'>
+          <a onClick={e => openLink(e, 'mailto:sumo@sumolicious.com')} className='underline left-1 hover:text-black' >sumo@sumolicious.com</a>
         </h2>
-        <h2 className='relative text-2xl leading-[85%] md:leading-[75%] p-0 m-0 md:text-5xl md:left-3 font-bold'>
+        <h2 className='relative text-2xl leading-[85%] md:leading-[75%] p-0 m-0 md:text-5xl left-1 md:left-3 font-bold'>
           <a onClick={e => openLink(e, 'https://www.instagram.com/sumo.music')} className='underline hover:text-black' >instagram</a>
         </h2>
       </div>
