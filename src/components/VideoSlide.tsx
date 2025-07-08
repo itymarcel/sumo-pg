@@ -34,7 +34,6 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
   const shouldLoadVideo = distance <= 1;
 
   const handleVideoLoad = useCallback((eventType: string) => {
-    console.log(`Video ${eventType}: ${project.title} (slide ${slideIndex})`);
     setIsLoading(false);
     setIsVideoLoaded(true);
   }, [project.title, slideIndex]);
@@ -65,7 +64,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
   }, [project.title, shouldLoadVideo, hasError]);
 
   const handleVideoSuspend = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
-    console.log(`Video suspend for ${project.title} (normal behavior):`, e);
+    // console.log(`Video suspend for ${project.title} (normal behavior):`, e);
     // Don't treat suspend as an error - it's normal when loading is paused
   }, [project.title]);
 
@@ -77,7 +76,6 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       videoRef.current.volume = isGlobalMuted ? 0 : 1;
       await videoRef.current.play();
       hasTriedToPlay.current = true;
-      console.log(`Successfully playing ${isGlobalMuted ? 'muted' : 'with audio'}: ${project.title}`);
     } catch (error) {
       console.warn('Video autoplay failed:', error);
       try {
@@ -92,7 +90,6 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
 
   const pauseVideo = useCallback(() => {
     if (videoRef.current && !videoRef.current.paused) {
-      console.log(`Pausing video: ${project.title}`);
       videoRef.current.pause();
     }
   }, [project.title]);
@@ -110,9 +107,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
 
   // Cleanup when video should not be loaded anymore
   useEffect(() => {
-    if (!shouldLoadVideo && videoRef.current) {
-      console.log(`Unloading video: ${project.title} (slide ${slideIndex})`);
-      
+    if (!shouldLoadVideo && videoRef.current) {      
       videoRef.current.pause();
       videoRef.current.src = '';
       videoRef.current.load();
@@ -123,7 +118,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       setHasError(false);
       hasTriedToPlay.current = false;
     } else if (shouldLoadVideo && !isVideoLoaded && !hasError) {
-      console.log(`Should load video: ${project.title} (slide ${slideIndex}, distance: ${distance})`);
+      // console.log(`Should load video: ${project.title} (slide ${slideIndex}, distance: ${distance})`);
     }
   }, [shouldLoadVideo, project.title, slideIndex, distance, isVideoLoaded, hasError]);
 
@@ -144,13 +139,11 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
         video.muted = false;
         video.volume = 1;
         await video.play();
-        console.log('Touch activated video:', video.currentSrc);
       } catch (error) {
         // Fallback to muted if unmuted fails
         try {
           video.muted = true;
           await video.play();
-          console.log('Touch activated video (muted):', video.currentSrc);
         } catch (mutedError) {
           console.warn('Touch could not activate video:', video.currentSrc, mutedError);
         }
@@ -212,7 +205,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
             {project.title}
           </h2>
           {project.subtitle && (
-            <p className="text-lg md:text-xl opacity-80 leading-tight">
+            <p className="text-lg font-medium md:text-xl leading-tight">
               {project.subtitle}
             </p>
           )}
@@ -220,25 +213,24 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
 
         {/* Services and Client Info - Toggleable */}
         <div 
-          className={`absolute flex items-center justify-center left-0 bottom-0 w-full h-full text-white transition-all duration-300 ${
-            showDetails ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'
+          className={`absolute flex items-center justify-center left-0 bottom-0 w-full h-full text-white ${
+            showDetails ? 'opacity-100 transform' : 'opacity-0 transform'
           }`}
         >
           <div className="bg-white rounded-lg p-4 max-w-md text-black">
-            <div className="mb-4">
-              <h4 className="font-bold mb-2">Services</h4>
-              <ul className="text-sm space-y-1">
+            <div className="flex flex-col gap-2 mb-4">
+              <div className="font-bold relative leading-none">Services</div>
+              <div className="text-sm relative -left-1 flex gap-1 items-center flex-wrap">
                 {project.services.map((service, index) => (
-                  <li key={index} className="opacity-90">
-                    • {service}
-                  </li>
+                  <div key={index} className="opacity-90 text-white font-medium list-none rounded-md bg-black py-2 px-3 w-min text-nowrap">
+                    {service}
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
             
-            <div>
-              <h4 className="font-bold mb-2">Client</h4>
-              <p className="text-sm opacity-90">{project.client}</p>
+            <div className=''>
+              for <span className="font-medium">{project.client}</span>
             </div>
           </div>
         </div>

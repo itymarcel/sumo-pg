@@ -147,7 +147,7 @@ const VideoSlider: React.FC = () => {
       
       {/* Control Buttons */}
       {userHasInteracted && (
-        <div className="fixed top-4 right-4 z-30 flex gap-2">
+        <div className="fixed top-4 right-4 md:top-6 md:right-6 z-30 flex gap-2">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -170,12 +170,6 @@ const VideoSlider: React.FC = () => {
         show={showOverlay}
         onEnable={handleUserInteraction}
       />
-      {/* Debug info */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="fixed bottom-4 left-4 text-white text-xs bg-black/50 p-2 rounded">
-          userHasInteracted: {userHasInteracted.toString()}, showOverlay: {showOverlay.toString()}
-        </div>
-      )}
     </>
   );
 };
