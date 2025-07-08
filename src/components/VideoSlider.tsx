@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { projects } from '../data/projects';
 import VideoSlide from './VideoSlide';
 import IntroSlide from './IntroSlide';
+import AudioEnableOverlay from './AudioEnableOverlay';
 
 const VideoSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -83,34 +84,41 @@ const VideoSlider: React.FC = () => {
   }, [currentIndex]);
 
   return (
-    <div 
-      ref={containerRef}
-      className="h-screen w-full overflow-y-auto snap-y snap-mandatory scrollbar-hide"
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-    >
-      {slides.map((slide, index) => (
-        <div
-          key={slide.type === 'intro' ? 'intro' : slide.project.id}
-          data-slide-index={index}
-          className="h-screen w-full snap-start"
-        >
-          {slide.type === 'intro' ? (
-            <IntroSlide 
-              isActive={index === currentIndex}
-              userHasInteracted={userHasInteracted}
-            />
-          ) : (
-            <VideoSlide
-              project={slide.project}
-              isActive={index === currentIndex}
-              userHasInteracted={userHasInteracted}
-              slideIndex={index}
-              currentIndex={currentIndex}
-            />
-          )}
-        </div>
-      ))}
-    </div>
+    <>
+      <div 
+        ref={containerRef}
+        className="h-screen w-full overflow-y-auto snap-y snap-mandatory scrollbar-hide"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {slides.map((slide, index) => (
+          <div
+            key={slide.type === 'intro' ? 'intro' : slide.project.id}
+            data-slide-index={index}
+            className="h-screen w-full snap-start"
+          >
+            {slide.type === 'intro' ? (
+              <IntroSlide 
+                isActive={index === currentIndex}
+                userHasInteracted={userHasInteracted}
+              />
+            ) : (
+              <VideoSlide
+                project={slide.project}
+                isActive={index === currentIndex}
+                userHasInteracted={userHasInteracted}
+                slideIndex={index}
+                currentIndex={currentIndex}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+      
+      <AudioEnableOverlay 
+        show={!userHasInteracted}
+        onEnable={handleUserInteraction}
+      />
+    </>
   );
 };
 

@@ -31,6 +31,12 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
   const distance = Math.abs(slideIndex - currentIndex);
   const shouldLoadVideo = distance <= 1;
 
+
+  useEffect(() => {
+    console.log('distance: ', distance);
+    console.log('should: ', shouldLoadVideo)
+  }, [distance])
+
   const handleVideoLoad = useCallback(() => {
     console.log(`Video loaded: ${project.title} (slide ${slideIndex})`);
     setIsLoading(false);
@@ -89,19 +95,14 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
     }
   }, [isActive, isVideoLoaded, userHasInteracted, playVideo, pauseVideo]);
 
-  useEffect(() => {
-    if (!isActive && videoRef.current) {
-      videoRef.current.currentTime = 0;
-    }
-  }, [isActive]);
+  // Removed currentTime reset - let videos resume from where they were paused
 
   // Cleanup when video should not be loaded anymore
   useEffect(() => {
     if (!shouldLoadVideo && videoRef.current) {
       console.log(`Unloading video: ${project.title} (slide ${slideIndex})`);
-      // Pause and reset the video
+      // Pause and unload the video, but preserve position
       videoRef.current.pause();
-      videoRef.current.currentTime = 0;
       videoRef.current.src = '';
       videoRef.current.load();
       
@@ -206,14 +207,6 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
           </div>
         </div>
 
-        {/* iOS Audio Prompt */}
-        {!userHasInteracted && isActive && (
-          <div className="absolute bottom-8 right-8 text-white text-center">
-            <p className="text-sm opacity-70 mb-2">
-              Tap to enable audio
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Invisible Click Handler for Toggle */}
