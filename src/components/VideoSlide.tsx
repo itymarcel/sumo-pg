@@ -28,10 +28,11 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
 
   // Intelligent preloading strategy:
   // - Always load current video (distance 0)
-  // - Preload next video (distance 1) 
-  // - Don't load videos more than 1 slide away
+  // - For Safari/iOS: Only load current video to prevent memory issues
+  // - For other browsers: Also preload next video (distance 1)
   const distance = Math.abs(slideIndex - currentIndex);
-  const shouldLoadVideo = distance <= 1;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) || /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const shouldLoadVideo = isSafari ? distance === 0 : distance <= 1;
 
   const handleVideoLoad = useCallback((eventType: string) => {
     setIsLoading(false);
@@ -190,7 +191,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
           className="absolute inset-0 w-full h-full object-cover"
           loop
           playsInline
-          preload={distance === 0 ? "auto" : "metadata"}
+          preload={isSafari ? (distance === 0 ? "metadata" : "none") : (distance === 0 ? "auto" : "metadata")}
           onLoadedMetadata={() => handleVideoLoad('loadedmetadata')}
           onCanPlay={() => handleVideoLoad('canplay')}
           onLoadedData={() => handleVideoLoad('loadeddata')}
