@@ -114,6 +114,7 @@ export const projects: Project[] = [
     subtitle: '',
     services: [
       'Composition',
+      'Production',
       'Mixing',
       'Music Video'
     ],
@@ -205,6 +206,7 @@ export const projects: Project[] = [
     subtitle: '',
     services: [
       'Composition',
+      'Production',
       'Mixing'
     ],
     client: 'Partners: Mr. Hope · Marcel Müller'
