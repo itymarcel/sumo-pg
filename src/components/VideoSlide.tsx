@@ -267,11 +267,11 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
                 {project.client}
             </div>
           </div>
-          <div className="relative -top-1">
+          <div className="relative md:-top-1">
             <div className="flex flex-col gap-2">
               <div className="text-sm relative -left-0.5 md:left-auto flex gap-1 items-center flex-wrap max-w-2xl">
                 {project.services.map((service, index) => (
-                  <div key={index} className="text-black uppercase text-xs font-extrabold list-none rounded-md bg-white py-2 px-3 md:py-1 md:px-2 w-min text-nowrap">
+                  <div key={index} className="text-black uppercase text-xs font-extrabold list-none rounded-md bg-white py-1 px-2 md:py-1 md:px-2 w-min text-nowrap">
                     {service}
                   </div>
                 ))}
