@@ -199,9 +199,10 @@ const VideoSlider: React.FC = () => {
               e.stopPropagation();
               scrollToSlide(0)
             }}
-            className={`p-1 text-white transition-colors ${currentIndex === 0 && 'hidden'}`}
+            className={`p-1 text-white transition-colors flex items-center font-bold font-mono gap-2 text-xs ${currentIndex === 0 && 'hidden'}`}
           >
-            <ArrowUp size={24} />
+            <div className=' opacity-30'>{currentIndex+1} {projects.length}</div>
+            <ArrowUp size={24} /> 
           </button>
           <button
             onClick={toggleGlobalMute}
@@ -216,7 +217,7 @@ const VideoSlider: React.FC = () => {
             }}
             className="p-1 text-white transition-colors"
           >
-            <Info size={24} />
+            <Info size={24} className='text-sumo-orange'/>
           </button>
         </div>
       )}

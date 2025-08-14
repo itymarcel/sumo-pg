@@ -5,4 +5,5 @@ export interface Project {
   subtitle: string;
   services: string[];
   client: string;
+  small: boolean;
 }

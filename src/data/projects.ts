@@ -10,7 +10,8 @@ export const projects: Project[] = [
       'Composition',
       'Sound Design'
     ],
-    client: '0711 Livecom GmbH'
+    client: '0711 Livecom GmbH',
+    small: false
   },
   {
     id: 'reach-vr-ar',
@@ -22,7 +23,8 @@ export const projects: Project[] = [
       'Composition',
       'Mixing'
     ],
-    client: 'Partners: Max Celar · Marcel Müller'
+    client: 'Partners: Max Celar · Marcel Müller',
+    small: true
   },
   {
     id: 'bmw-vision-shanghai',
@@ -32,7 +34,8 @@ export const projects: Project[] = [
     services: [
       'Sound Design'
     ],
-    client: 'Awesome Pixels / Klangerfinder'
+    client: 'Awesome Pixels / Klangerfinder',
+    small: false
   },
   {
     id: 'db-ise-25',
@@ -44,7 +47,8 @@ export const projects: Project[] = [
       'Composition',
       'AI Voice'
     ],
-    client: 'd&b / Klangerfinder'
+    client: 'd&b / Klangerfinder',
+    small: true
   },
   {
     id: 'dmg-mori-emo',
@@ -56,7 +60,8 @@ export const projects: Project[] = [
       'Sound Design',
       '5.1 On-Site Mixing'
     ],
-    client: 'Jangled Nerves / Klangerfinder'
+    client: 'Jangled Nerves / Klangerfinder',
+    small: true
   },
   {
     id: 'freundeskreis-tracks',
@@ -69,7 +74,8 @@ export const projects: Project[] = [
       'Composition',
       'Mixing for usomo (binaural audio system)'
     ],
-    client: 'StadtPalais – Museum für Stuttgart'
+    client: 'StadtPalais – Museum für Stuttgart',
+    small: false
   },
   {
     id: 'beyerdynamic-launch',
@@ -81,7 +87,8 @@ export const projects: Project[] = [
       'Sound Design',
       'Casting & Voice Recording'
     ],
-    client: 'beyerdynamic · 0711 Livecom GmbH'
+    client: 'beyerdynamic · 0711 Livecom GmbH',
+    small: true
   },
   {
     id: 'blind-date-stuttgart',
@@ -94,7 +101,8 @@ export const projects: Project[] = [
       'Interactive Sound Scenes via IR Sensor',
       'Sound Design'
     ],
-    client: 'StadtPalais – Museum für Stuttgart'
+    client: 'StadtPalais – Museum für Stuttgart',
+    small: false
   },
   {
     id: 'ghost-autonomy',
@@ -105,7 +113,8 @@ export const projects: Project[] = [
       'Sound Design',
       'Consulting'
     ],
-    client: 'Ghost Autonomy'
+    client: 'Ghost Autonomy',
+    small: false
   },
   {
     id: 'sumo-ishiki-ep',
@@ -118,7 +127,8 @@ export const projects: Project[] = [
       'Mixing',
       'Music Video'
     ],
-    client: 'Partners: Mr. Hope · Marcel Müller · Andreas Klassen'
+    client: 'Partners: Mr. Hope · Marcel Müller · Andreas Klassen',
+    small: false
   },
   {
     id: 'kolk17',
@@ -128,7 +138,8 @@ export const projects: Project[] = [
     services: [
       '4.1 On-Site Mixing'
     ],
-    client: 'Jochen Ehmann / Klangerfinder'
+    client: 'Jochen Ehmann / Klangerfinder',
+    small: true
   },
   {
     id: 'mercedes-museum',
@@ -139,7 +150,8 @@ export const projects: Project[] = [
       'Music',
       'Sound Design'
     ],
-    client: '0711 Livecom GmbH'
+    client: '0711 Livecom GmbH',
+    small: false
   },
   {
     id: 'mvsp-band',
@@ -151,7 +163,8 @@ export const projects: Project[] = [
       'Mixing',
       'Mastering'
     ],
-    client: 'Partners: Finji · Ondo · Thunderpad'
+    client: 'Partners: Finji · Ondo · Thunderpad',
+    small: true
   },
   {
     id: 'roomservice-telephone',
@@ -163,7 +176,8 @@ export const projects: Project[] = [
       'Casting',
       'Voice Recording'
     ],
-    client: 'Roomservice GmbH'
+    client: 'Roomservice GmbH',
+    small: false
   },
   {
     id: 'sumo-hoer-mixtape',
@@ -174,7 +188,8 @@ export const projects: Project[] = [
       'DJ',
       'Curation'
     ],
-    client: 'Partner: HÖR Berlin'
+    client: 'Partner: HÖR Berlin',
+    small: false
   },
   {
     id: 'sumo-be-my-guest',
@@ -185,7 +200,8 @@ export const projects: Project[] = [
       'DJ',
       'Curation'
     ],
-    client: 'Partner: BaBa Beach Cloud'
+    client: 'Partner: BaBa Beach Cloud',
+    small: false
   },
   {
     id: 'city-of-kings',
@@ -197,7 +213,8 @@ export const projects: Project[] = [
       'Voice Recording',
       'Audio Drama Production'
     ],
-    client: 'Partner: StadtPalais Stuttgart'
+    client: 'Partner: StadtPalais Stuttgart',
+    small: false
   },
   {
     id: 'sumo-trakul-ep',
@@ -209,6 +226,7 @@ export const projects: Project[] = [
       'Production',
       'Mixing'
     ],
-    client: 'Partners: Mr. Hope · Marcel Müller'
+    client: 'Partners: Mr. Hope · Marcel Müller',
+    small: true
   }
 ];

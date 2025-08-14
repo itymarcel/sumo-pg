@@ -202,7 +202,7 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       {shouldLoadVideo && (
         <video
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
+          className={`absolute inset-0 w-full h-full ${project.small ? 'p-[5%] md:p-[15%]' : 'object-cover'}`}
           loop
           playsInline
           // preload={isSafari ? (distance === 0 ? "metadata" : "none") : (distance === 0 ? "auto" : "metadata")}
@@ -253,9 +253,9 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
       {/* Overlay Content */}
       <div className="absolute z-10 inset-0 pointer-events-none">
         {/* Title and Subtitle - Always Visible */}
-        <div className='absolute top-4 left-4 right-4 text-white flex flex-col gap-2 md:gap-4'>
+        <div className='absolute top-4 left-4 right-4 text-white flex flex-col gap-1 md:gap-4'>
           <div className="relative ">
-            <h2 className="relative text-2xl uppercase md:text-5xl md:-left-0.5 font-extrabold leading-[1] md:max-w-[90vw]">
+            <h2 className="relative text-2xl uppercase md:text-5xl md:-left-0.5 font-extrabold leading-[1] md:max-w-[90vw] font-libertinus">
               {project.title}
             </h2>
             {project.subtitle && (
@@ -267,11 +267,11 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
                 {project.client}
             </div>
           </div>
-          <div className="relative">
+          <div className="relative -top-1">
             <div className="flex flex-col gap-2">
               <div className="text-sm relative -left-0.5 md:left-auto flex gap-1 items-center flex-wrap max-w-2xl">
                 {project.services.map((service, index) => (
-                  <div key={index} className="text-black uppercase text-xs font-extrabold list-none rounded-xl bg-white py-2 px-3 md:py-3 md:px-4 w-min text-nowrap">
+                  <div key={index} className="text-black uppercase text-xs font-extrabold list-none rounded-md bg-white py-2 px-3 md:py-1 md:px-2 w-min text-nowrap">
                     {service}
                   </div>
                 ))}
