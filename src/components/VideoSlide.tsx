@@ -255,11 +255,15 @@ const VideoSlide: React.FC<VideoSlideProps> = ({
         {/* Title and Subtitle - Always Visible */}
         <div className='absolute top-4 left-4 right-4 text-white flex flex-col gap-1 md:gap-4'>
           <div className="relative ">
-            <h2 className="relative text-2xl uppercase md:text-5xl md:-left-0.5 font-extrabold leading-[1] md:max-w-[90vw] font-libertinus">
+            <h2 className="relative flex mb-1 items-center justify-between md:justify-start gap-1 md:gap-6 text-2xl uppercase md:text-5xl md:-left-0.5 font-extrabold leading-[1] md:max-w-[90vw] font-libertinus">
               {project.title}
+              {(project.link && isActive)
+                ? <a href={project.link} target='_blank' title={project.linkTitle} className='text-lg pointer-events-auto fixed bottom-[14px] left-[14px] md:relative md:bottom-auto md:left-auto  px-2 py-1 rounded-md flex items-center text-sumo-orange bg-sumo-purple hover:bg-sumo-orange hover:text-white'>{project.linkTitle}</a>
+                : null
+              }
             </h2>
             {project.subtitle && (
-              <div className="text-lg font-medium md:text-xl mt-1 leading-[1]">
+              <div className="text-lg font-medium md:text-xl leading-[1.1] md:leading-[1.1] max-w-[800px]">
                 {project.subtitle}
               </div>
             )}

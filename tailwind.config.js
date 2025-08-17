@@ -16,6 +16,12 @@ module.exports = {
         'sumo-orange': 'rgba(255, 95, 66, 1)',
         'sumo-purple': 'rgba(57, 17, 100, 1)',
       },
+      boxShadow: {
+        'yellow-smooth': '0 10px 25px -3px rgba(255, 255, 0, 0.3), 0 4px 6px -2px rgba(255, 255, 0, 0.05)',
+      },
+      dropShadow: {
+        'yellow-smooth': '3px 3px 80px rgba(255, 95, 66, 0.5)',
+      },
     },
   },
   plugins: [

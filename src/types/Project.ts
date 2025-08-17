@@ -6,4 +6,6 @@ export interface Project {
   services: string[];
   client: string;
   small: boolean;
+  link?: string;
+  linkTitle?: string;
 }

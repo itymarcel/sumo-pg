@@ -38,6 +38,46 @@ export const projects: Project[] = [
     small: false
   },
   {
+    id: 'hyundai',
+    videoUrl: 'videos/hyundai_master.mp4',
+    title: 'Hyundai x Florian Ostertag (Berlin Fashion Week 2025)',
+    subtitle: '',
+    services: [
+      'Sound Design',
+      'Mixing',
+      'Mastering',
+    ],
+    client: 'Awesome Pixels',
+    small: true
+  },
+  {
+    id: 'dj',
+    videoUrl: 'videos/dj_master.mp4',
+    title: 'DJ VITA',
+    subtitle: 'From smashing the decks at HipHop Open, celebrating 30 years of Die Fantastischen Vier, and tearing it up at Schräglage (solo sets plus supporting heavyweights like Haftbefehl, Chefket, Die Beginner, Marteria, Die Orsons and more), to keeping vibes lit at Tatti (New Year’s Eve blowouts & Christmas shindigs included), Rocker33, Climaxx, and even repping at Porsche’s 75th anniversary bash on the Hockenheimring with Paul Ripke. Add the Mercedes-Benz Executive Events, The Porsche Tunnel Club at home games from VfB Stuttgart countless birthdays and weddings, and a whole lot more – every single one still gives me a buzz and keeps me hyped for the next set.',
+    services: [
+    ],
+    link: 'mailto:l.crvadiku@0711.net',
+    linkTitle: 'Booking',
+    client: '',
+    small: false
+  },
+  {
+    id: 'edits',
+    videoUrl: 'videos/edits_darker_master.mp4',
+    title: 'sumolicious edits vol. 1',
+    subtitle: 'Edits of: Migos, Bad Bunny, OG Keemo, Mashine Gun Kelly, IAMDDB, Jonwayne',
+    services: [
+      'Composition',
+      'Production',
+      'Mixing'
+    ],
+    link: 'https://hypeddit.com/sumomusic/sumoliciouseditsvol1',
+    linkTitle: 'DOWNLOAD',
+    client: 'Partners: finji, KITI ARSA, Swight Dultz',
+    small: false
+  },
+  {
     id: 'db-ise-25',
     videoUrl: 'videos/dbISE25_master.mp4',
     title: 'd&b ISE 25',
@@ -66,7 +106,7 @@ export const projects: Project[] = [
   {
     id: 'freundeskreis-tracks',
     videoUrl: 'videos/freundeskreis_master.mp4',
-    title: 'Freundeskreis – Put Your Ear on the Tracks of History',
+    title: 'Freundeskreis – Leg dein Ohr auf die Schiene der Geschichte',
     subtitle: '',
     services: [
       'Editing',
@@ -75,6 +115,19 @@ export const projects: Project[] = [
       'Mixing for usomo (binaural audio system)'
     ],
     client: 'StadtPalais – Museum für Stuttgart',
+    small: false
+  },
+  {
+    id: 'rillencheck',
+    videoUrl: 'videos/rillencheck_master.mp4',
+    title: 'Rillencheck Season 2 & 3',
+    subtitle: '',
+    services: [
+      'Founder',
+      'Creative Direction',
+      'Moderation',
+    ],
+    client: 'Mercedes Benz, Jägermeister, Saeed Kakavand',
     small: false
   },
   {
@@ -106,7 +159,7 @@ export const projects: Project[] = [
   },
   {
     id: 'ghost-autonomy',
-    videoUrl: 'videos/ghost-autonomy.mp4',
+    videoUrl: 'videos/ghost_master.mp4',
     title: 'Ghost Autonomy – Semantic Audio System',
     subtitle: '',
     services: [
@@ -121,6 +174,8 @@ export const projects: Project[] = [
     videoUrl: 'videos/hokori_master.mp4',
     title: 'sumo – Ishiki EP',
     subtitle: '',
+    link: 'https://sonarkollektiv.lnk.to/Ishiki',
+    linkTitle: 'Listen',
     services: [
       'Composition',
       'Production',
@@ -158,6 +213,8 @@ export const projects: Project[] = [
     videoUrl: 'videos/mvsp_master.mp4',
     title: 'MVSP (Band)',
     subtitle: '',
+    link: 'http://www.udiocollective.com/',
+    linkTitle: 'Website',
     services: [
       'Composition',
       'Mixing',
@@ -184,6 +241,8 @@ export const projects: Project[] = [
     videoUrl: 'videos/hoer_master.mp4',
     title: 'sumo HÖR Mixtape',
     subtitle: '',
+    link: 'https://www.youtube.com/watch?v=gv8rrI6vTqM&list=RDgv8rrI6vTqM&start_radio=1&t=1118s',
+    linkTitle: 'Watch',
     services: [
       'DJ',
       'Curation'
@@ -196,6 +255,8 @@ export const projects: Project[] = [
     videoUrl: 'videos/bemyguest_master.mp4',
     title: 'sumo – Be My Guest Mix',
     subtitle: '',
+    link: 'https://soundcloud.com/sumo0711',
+    linkTitle: 'LISTEN',
     services: [
       'DJ',
       'Curation'
@@ -221,6 +282,8 @@ export const projects: Project[] = [
     videoUrl: 'videos/trakul_master.mp4',
     title: 'sumo – Trakul EP',
     subtitle: '',
+    link: 'https://sonarkollektiv.lnk.to/TrakulEP',
+    linkTitle: 'Listen',
     services: [
       'Composition',
       'Production',
