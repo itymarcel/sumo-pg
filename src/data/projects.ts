@@ -18,6 +18,8 @@ export const projects: Project[] = [
     videoUrl: 'videos/reach_master.mp4',
     title: 'REACH (VR / AR)',
     subtitle: '',
+    link: 'https://untold.garden/reach/',
+    linkTitle: 'MORE',
     services: [
       'Sound Design',
       'Composition',
@@ -106,8 +108,10 @@ export const projects: Project[] = [
   {
     id: 'freundeskreis-tracks',
     videoUrl: 'videos/freundeskreis_master.mp4',
-    title: 'Freundeskreis – Leg dein Ohr auf die Schiene der Geschichte',
-    subtitle: '',
+    title: 'Freundeskreis',
+    subtitle: 'Leg dein Ohr auf die Schiene der Geschichte',
+    link: 'https://www.stadtpalais-stuttgart.de/ausstellungen/leg-dein-ohr-auf-die-schiene-der-geschichte',
+    linkTitle: 'More',
     services: [
       'Editing',
       'Sound Design',
@@ -267,8 +271,10 @@ export const projects: Project[] = [
   {
     id: 'city-of-kings',
     videoUrl: 'videos/stadtderkoenige_master.mp4',
-    title: 'City of Kings – Stuttgart Told Through 25 Objects',
-    subtitle: '',
+    title: 'City of Kings',
+    subtitle: 'Stuttgart Explained Through 25 Objects',
+    link: 'https://www.stadtpalais-stuttgart.de/ausstellungen/stuttgart-stadt-der-koenige',
+    linkTitle: 'MORE',
     services: [
       'Casting',
       'Voice Recording',
