@@ -39,7 +39,7 @@ const AudioEnableOverlay: React.FC<AudioEnableOverlayProps> = ({ show, onEnable 
           <h2 className='relative text-sumo-orange mt-24 md:mt-4 text-xl leading-[85%] md:leading-[80%] p-0 m-0 md:text-3xl left-1 md:left-3 font-bold '>Paul Goeritz</h2>
           <h2 className='relative text-sumo-orange text-xl leading-[85%] md:leading-[80%] p-0 m-0 md:text-3xl left-1 md:left-3 font-bold'>DJ, Composer, Sound Designer</h2>
           <h2 className='relative text-sumo-orange text-xl leading-[85%] md:leading-[80%] p-0 m-0 md:text-3xl left-1 md:left-3 font-bold'>
-            <a onClick={e => openLink(e, 'mailto:sumo@sumolicious.com')} className='underline left-1 hover:text-black' >sumo@sumolicious.com</a>
+            <a onClick={e => openLink(e, 'mailto:sumo@sumolicious.de')} className='underline left-1 hover:text-black' >sumo@sumolicious.de</a>
           </h2>
           <h2 className='relative text-sumo-orange text-xl leading-[85%] md:leading-[80%] p-0 m-0 md:text-3xl left-1 md:left-3 font-bold'>
             <a onClick={e => openLink(e, 'https://www.instagram.com/sumo.music')} className='underline hover:text-black' >instagram</a>
